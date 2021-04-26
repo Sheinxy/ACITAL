@@ -1,0 +1,47 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Resources/CanvasModulate.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Resources/StairArea.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Tilesets/AlienBase.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Objects/Alien.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Objects/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Resources/DialogBox.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Resources/WorldEnvironment.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Resources/LevelName.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Resources/Pause.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scripts/Level.gd" type="Script" id=10]
+
+[node name="Level_0" type="YSort"]
+scale = Vector2( 5, 5 )
+script = ExtResource( 10 )
+
+[node name="DialogBox" parent="." instance=ExtResource( 6 )]
+offset = Vector2( 70, -1000 )
+transform = Transform2D( 4, 0, 0, 3, 70, -1000 )
+
+[node name="LevelName" parent="." instance=ExtResource( 8 )]
+
+[node name="Pause" parent="." instance=ExtResource( 9 )]
+
+[node name="Buttons" type="Node2D" parent="."]
+
+[node name="Doors" type="Node" parent="."]
+
+[node name="AlienBase" parent="." instance=ExtResource( 3 )]
+tile_data = PoolIntArray( -65536, 0, 0, -65535, 0, 0, -65534, 0, 0, 0, 0, 1, 1, 0, 0, 2, 0, 1, 65536, 0, 2, 65537, 0, 131072, 65538, 0, 65537 )
+
+[node name="CanvasModulate" parent="." instance=ExtResource( 1 )]
+
+[node name="WorldEnvironment" parent="." instance=ExtResource( 7 )]
+
+[node name="Player" parent="." instance=ExtResource( 5 )]
+position = Vector2( 23.7887, 23.3159 )
+
+[node name="Aliens" type="Node2D" parent="."]
+
+[node name="Alien" parent="Aliens" instance=ExtResource( 4 )]
+visible = false
+
+[node name="StairArea" parent="." instance=ExtResource( 2 )]
+visible = false
+next_scene = "res://Levels/Level_0.tscn"

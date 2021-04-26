@@ -1,0 +1,74 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Scripts/Decoy.gd" type="Script" id=1]
+[ext_resource path="res://Spritesheets/Decoy/decoy_spritesheet.png" type="Texture" id=2]
+[ext_resource path="res://Textures/light_texture.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/DecoyLight.gd" type="Script" id=4]
+[ext_resource path="res://SoundEffects/alarm.wav" type="AudioStream" id=5]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 4, 4 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 4, 0, 4, 4 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 4, 4, 4 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
+"loop": true,
+"name": "Active",
+"speed": 4.0
+}, {
+"frames": [ SubResource( 3 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 3.51148
+
+[sub_resource type="ShaderMaterial" id=6]
+
+[node name="Decoy" type="Area2D"]
+collision_layer = 2147483650
+collision_mask = 0
+script = ExtResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 4 )
+animation = "Idle"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 5 )
+
+[node name="Light2D" type="Light2D" parent="."]
+material = SubResource( 6 )
+enabled = false
+texture = ExtResource( 3 )
+texture_scale = 0.03
+color = Color( 1, 0.4, 0.4, 1 )
+energy = 3.0
+shadow_enabled = true
+shadow_color = Color( 0, 0, 0, 1 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="DecoySound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+attenuation = 1.6245
+bus = "SoundEffects"
+
+[node name="AlarmTimer" type="Timer" parent="."]
+one_shot = true
+[connection signal="finished" from="DecoySound" to="." method="_restart_alarm_timer"]
+[connection signal="timeout" from="AlarmTimer" to="." method="_play_sound"]
