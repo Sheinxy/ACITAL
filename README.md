@@ -5,7 +5,7 @@
 
 ---------------
 
-[LDJam Page](https://ldjam.com/events/ludum-dare/48/$236428)
+[LDJam Page](https://ldjam.com/events/ludum-dare/48/a-cat-in-the-aliens-lair)
 
 
 [Itch.io Page](https://sheinxy.itch.io/a-cat-in-the-aliens-lair)
