@@ -1,12 +1,12 @@
 # A Cat In The Aliens' Lair
 ## Ludum Dare 48 - Deeper and Deeper
 
-![](https://static.jam.vg/content/045/e/z/3b9ed.png.320x256.fit.jpg)
+[![](https://static.jam.vg/content/045/e/z/3b9ed.png.320x256.fit.jpg)](https://youtu.be/2W9Yv3LlKN0)
 
 ---------------
 
 [LDJam Page](https://ldjam.com/events/ludum-dare/48/$236428)
-[Itch.io Page] (https://sheinxy.itch.io/a-cat-in-the-aliens-lair)
+[Itch.io Page](https://sheinxy.itch.io/a-cat-in-the-aliens-lair)
 
 ---------------
 
