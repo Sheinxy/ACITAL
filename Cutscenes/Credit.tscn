@@ -1,0 +1,79 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Resources/DialogBox.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Cutscene.gd" type="Script" id=2]
+[ext_resource path="res://Spritesheets/Sheinxy/sheinxy_spritesheet.png" type="Texture" id=3]
+[ext_resource path="res://SoundEffects/pickup.wav" type="AudioStream" id=4]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 3 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 4.0
+} ]
+
+[node name="Credit" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 640.0
+margin_bottom = 480.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+pause_mode = 2
+position = Vector2( 320, 368 )
+scale = Vector2( 7, 7 )
+frames = SubResource( 5 )
+frame = 1
+playing = true
+
+[node name="DialogBox" parent="." instance=ExtResource( 1 )]
+dialogs = [ "Hi! ", "My name is Sheinxy! I'm the creator of this game!", "This is the end of the ride, I hope you enjoyed it!", "I wasn't alone working on this game, my boyfriend Patcho made the musics!", "And I made the pixel art and programming!", "We hope you enjoyed playing it!", "If you did, please feel free to give feedback!", "Comment, rate the game on ldjam.com!", "And don't be shy about sharing it with your friends!" ]
+speed = 25.0
+
+[node name="Background" parent="DialogBox" index="0"]
+visible = false
+
+[node name="Text" parent="DialogBox" index="1"]
+margin_left = 3.79261
+margin_top = -21.0
+margin_right = 121.793
+margin_bottom = 51.0
+align = 1
+
+[node name="Next" parent="DialogBox" index="2"]
+modulate = Color( 0.882353, 0, 0, 1 )
+margin_left = 134.086
+margin_top = 96.7497
+margin_right = 141.086
+margin_bottom = 103.75
+
+[node name="DialogSound" parent="DialogBox" index="3"]
+stream = ExtResource( 4 )
+volume_db = -14.641
+pitch_scale = 0.61
+[connection signal="on_finish" from="DialogBox" to="." method="_change_scene"]
+
+[editable path="DialogBox"]

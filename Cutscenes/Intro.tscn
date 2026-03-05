@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Resources/DialogBox.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Cutscene.gd" type="Script" id=2]
+
+[node name="Intro" type="Node2D"]
+script = ExtResource( 2 )
+on_finish = "res://Levels/Level_1.tscn"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 640.0
+margin_bottom = 480.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="DialogBox" parent="." instance=ExtResource( 1 )]
+dialogs = [ "Let me tell you a story...", "A story about a courageous kitten and malicious aliens...", "In the year 2x21, aliens invaded Earth, unbeknown to humanity...", "But what the aliens didn't know was that a kit named Sly noticed their evil endeavor...", "Listening only to his courage, the brave little cat sneaked in their evil lair...", "He decided to investigate deeper and deeper into their lair, determined to stop them..." ]
+speed = 15.0
+
+[node name="Background" parent="DialogBox" index="0"]
+visible = false
+
+[node name="Text" parent="DialogBox" index="1"]
+margin_left = 8.03143
+margin_top = 3.08072
+margin_right = 116.031
+margin_bottom = 47.0807
+align = 1
+
+[node name="Next" parent="DialogBox" index="2"]
+modulate = Color( 0.882353, 0, 0, 1 )
+margin_left = 134.086
+margin_top = 96.7497
+margin_right = 141.086
+margin_bottom = 103.75
+[connection signal="on_finish" from="DialogBox" to="." method="_change_scene"]
+
+[editable path="DialogBox"]

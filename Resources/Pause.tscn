@@ -1,0 +1,101 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Fonts/font.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scripts/Pause.gd" type="Script" id=2]
+[ext_resource path="res://SoundEffects/pickup.wav" type="AudioStream" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 1 )
+
+[node name="Pause" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 2 )
+
+[node name="PauseScreen" type="Control" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="PauseScreen"]
+margin_right = 640.0
+margin_bottom = 480.0
+color = Color( 0, 0, 0, 0.494118 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="RichTextLabel" parent="PauseScreen"]
+margin_left = 273.587
+margin_top = 176.16
+margin_right = 366.587
+margin_bottom = 208.16
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[wave amp=15 freq=2]Paused[/wave]"
+text = "Paused"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Music" type="Control" parent="PauseScreen"]
+margin_top = -14.3015
+margin_bottom = -14.3015
+
+[node name="HSlider" type="HSlider" parent="PauseScreen/Music"]
+margin_left = 277.347
+margin_top = 224.36
+margin_right = 341.347
+margin_bottom = 269.36
+value = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MusicLabel" type="Label" parent="PauseScreen/Music"]
+margin_left = 277.347
+margin_top = 218.387
+margin_right = 340.347
+margin_bottom = 261.387
+custom_fonts/font = SubResource( 2 )
+text = "Music
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sounds" type="Control" parent="PauseScreen"]
+margin_top = -14.3015
+margin_bottom = -14.3015
+
+[node name="HSlider" type="HSlider" parent="PauseScreen/Sounds"]
+margin_left = 277.347
+margin_top = 280.49
+margin_right = 341.347
+margin_bottom = 325.49
+value = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SoundLabel" type="Label" parent="PauseScreen/Sounds"]
+margin_left = 277.347
+margin_top = 276.134
+margin_right = 342.347
+margin_bottom = 319.134
+custom_fonts/font = SubResource( 2 )
+text = "Sound"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SliderSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+[connection signal="value_changed" from="PauseScreen/Music/HSlider" to="." method="_change_music"]
+[connection signal="value_changed" from="PauseScreen/Sounds/HSlider" to="." method="_changed_sound"]
